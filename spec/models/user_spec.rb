@@ -33,13 +33,13 @@ describe User do
   end
                             
    
-  describe "when name is not present" do        #it will describe when name is not  present
-    before { @user.name = " " }                 #it will inside the block before any example.
-    it { should_not be_valid }                  #if name field will be blank then it will give error
+  describe "when name is not present" do        
+    before { @user.name = " " }                 
+    it { should_not be_valid }                  
   end
-  describe "when email is not present" do       #it will describe when name is not  present
-  	before { @user.email = " " }                #it will inside the block before any example.
-  	it { should_not be_valid }                  #if email field will be blank then it will give error
+  describe "when email is not present" do       
+  	before { @user.email = " " }                
+  	it { should_not be_valid }                  
   end
   describe "when name is too long" do
   	before { @user.name = "a" * 51 }
@@ -73,7 +73,7 @@ describe User do
   	      it { should_not be_valid }
     end
     describe "when password is not present" do
-      before { @user.password = @user.password_confirmation = ""}    #if password is not present it will give error.
+      before { @user.password = @user.password_confirmation = ""}    
       it { should_not be_valid }
     end
     describe "when password doesn't match confirmation" do 
@@ -85,11 +85,11 @@ describe User do
       it { should_not be_valid }
     end
     describe "return value of authenticate method" do
-      before { @user.save }          #user.save, it will save the users and then let method will search by email.                       
-      let(:found_user) { User.find_by_email(@user.email) }   #let method create the local variable inside the test, local variable can access by defining inside the method or loop. 
+      before { @user.save }          
+      let(:found_user) { User.find_by_email(@user.email) }   
     
       describe "with valid password" do
-      it { should == found_user.authenticate(@user.password) }    #password will be valid when the user's password be authenticate
+      it { should == found_user.authenticate(@user.password) }    
       end
       describe "with invalid password" do
         let(:user_for_invalid_password) { found_user.authenticate("invalid") }
